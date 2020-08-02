@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Microsoft.Extensions.Hosting;
 
 namespace grpc_test
 {
@@ -22,10 +17,13 @@ namespace grpc_test
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.ConfigureKestrel(options=> {
-                        options.ListenLocalhost(5001, opt => {
-                            opt.Protocols = HttpProtocols.Http2;
-                        });
+                    webBuilder.ConfigureKestrel(options =>
+                    {
+                        // Setup a HTTP/2 endpoint without TLS.
+                        // You should only do this during development.Not using
+                        // TLS will result in gRPC messages being sent without encryption.
+                        options.ListenLocalhost(5000, o => o.Protocols =
+                            HttpProtocols.Http2);
                     });
                     webBuilder.UseStartup<Startup>();
                 });
