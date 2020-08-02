@@ -1,6 +1,6 @@
 ﻿{
   "profiles": {
-    "grpc-test": {
+    "grpc-server": {
       "commandName": "Project",
       "launchBrowser": true,
       "applicationUrl": "http://localhost:5000",
