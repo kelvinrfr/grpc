@@ -1,0 +1,17 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "grpc_server.v1";
+
+service Streamer {
+    rpc GetDataAsync(GetDataRequest) returns (stream GetDataReply);
+}
+
+message GetDataRequest
+{
+    int32 seed = 1;
+}
+
+message GetDataReply {
+    int32 number = 1;
+    string datetime = 2;
+}
