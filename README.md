@@ -3,6 +3,8 @@
 In this project I'm doing some tests with this technology.
 
 ## Notes
+- the way to return an "array of results" is through streaming, e.g. `rpc GetDataAsync(GetDataRequest) returns (stream GetDataReply);`
+- the other way is to return an array inside a messege envelop, but this is not too performatic
 - `proto files` = kind of interfaces to define the message format.
 - `rpc SayHello (HelloRequest) returns (HelloReply);` = service definition
 - each message should have a `order identifier`, e.g.:
@@ -11,6 +13,7 @@ In this project I'm doing some tests with this technology.
         string message = 1;
     }
     ```
+- to create new services we should register them individually on Startup `endpoints.MapGrpcService<v1.StreamerService>();`
 - [disabling TLS and making gRPC server run over http (insercure) due to OS compatibility (macOS)](https://docs.microsoft.com/pt-br/aspnet/core/grpc/troubleshoot?view=aspnetcore-3.1&source=docs#unable-to-start-aspnet-core-grpc-app-on-macos)
 - [call insecure (http) gRPC services](https://docs.microsoft.com/pt-br/aspnet/core/grpc/troubleshoot?view=aspnetcore-3.1&source=docs#call-insecure-grpc-services-with-net-core-client)
 

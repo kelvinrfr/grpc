@@ -17,11 +17,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Protos\" />
+    <Folder Include="Protos\v1\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Protos\greet.proto" />
+    <None Remove="Protos\v1\streamer.proto" />
   </ItemGroup>
   <ItemGroup>
     <Protobuf Include="Protos\greet.proto" GrpcServices="Client" />
+    <Protobuf Include="Protos\v1\streamer.proto" GrpcServices="Client" />
   </ItemGroup>
 </Project>

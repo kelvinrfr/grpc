@@ -25,7 +25,7 @@ namespace grpc_server.v1
             {
                 await responseStream.WriteAsync(new GetDataReply
                 {
-                    Number = random.Next(),
+                    Number = random.Next(maxValue: 100),
                     Datetime = DateTime.UtcNow.ToString()
                 });
                 await Task.Delay(TimeSpan.FromSeconds(1));
