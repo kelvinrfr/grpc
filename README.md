@@ -33,3 +33,9 @@ Client
 - Grpc.Net.Client, which contains the .NET Core client.
 - Google.Protobuf, which contains protobuf message APIs for C#.
 - Grpc.Tools, which contains C# tooling support for protobuf files. The tooling package isn't required at runtime, so the dependency is marked with PrivateAssets="All".
+
+
+## Other References
+- gRPC status codes https://datatracker.ietf.org/doc/html/rfc7540#page-50
+- Kestrel gRPC configuration https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/http2?view=aspnetcore-6.0
+- Kestrel endpoints configuration https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel/endpoints?view=aspnetcore-6.0#listenoptionsprotocols

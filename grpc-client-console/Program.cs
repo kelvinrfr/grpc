@@ -10,12 +10,12 @@ namespace grpc_client_console
 {
     class Program
     {
-        const string address = "http://localhost:5000";
+        const string address = "https://localhost:5001";
         static readonly GrpcChannel channel = GrpcChannel.ForAddress(
             address,
             new GrpcChannelOptions
             {
-                Credentials = ChannelCredentials.Insecure, 
+                Credentials = ChannelCredentials.SecureSsl, 
                 ServiceConfig = new ServiceConfig
                 {
                     // using round robin load balance on client side
