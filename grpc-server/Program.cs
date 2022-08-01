@@ -1,7 +1,9 @@
-using grpc_server;
+using grpc_server.Services;
+using grpc_server.Services.v1;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddControllers();
 builder.Services.AddGrpc();
 
 var app = builder.Build();
@@ -14,13 +16,10 @@ if (app.Environment.IsDevelopment())
 app.UseRouting();
 app.UseEndpoints(endpoints =>
 {
-    endpoints.MapGrpcService<GreeterService>();
-    endpoints.MapGrpcService<grpc_server.v1.StreamerService>();
+    endpoints.MapControllers();
 
-    endpoints.MapGet("/", async context =>
-    {
-        await context.Response.WriteAsync("Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
-    });
+    endpoints.MapGrpcService<GreeterService>();
+    endpoints.MapGrpcService<StreamerService>();
 });
 
 app.Run();

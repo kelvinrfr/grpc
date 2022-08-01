@@ -1,8 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using Grpc.Core;
+﻿using Grpc.Core;
+using grpc_server.v1;
 
-namespace grpc_server.v1
+namespace grpc_server.Services.v1
 {
     public class StreamerService : Streamer.StreamerBase
     {
