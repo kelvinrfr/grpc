@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Grpc.Core;
 using Grpc.Net.Client;
+using Grpc.Net.Client.Configuration;
 using grpc_server;
 using grpc_server.v1;
 
@@ -10,15 +11,23 @@ namespace grpc_client_console
     class Program
     {
         const string address = "http://localhost:5000";
-        static readonly GrpcChannel channel = GrpcChannel.ForAddress(address);
+        static readonly GrpcChannel channel = GrpcChannel.ForAddress(
+            address,
+            new GrpcChannelOptions
+            {
+                Credentials = ChannelCredentials.Insecure, 
+                ServiceConfig = new ServiceConfig
+                {
+                    // using round robin load balance on client side
+                    // https://devblogs.microsoft.com/dotnet/grpc-in-dotnet-6/
+                    LoadBalancingConfigs = { new RoundRobinConfig() }
+                }
+            });
 
         static async Task Main(string[] args)
         {
             Console.WriteLine("Waiting server warm up...");
             await Task.Delay(TimeSpan.FromSeconds(5));
-
-            // Allowing gRPC run over insecure channels
-            AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
 
             Console.WriteLine($"Creating gRPC clients over channel '{address}'...");
             await CallGreeterService();
