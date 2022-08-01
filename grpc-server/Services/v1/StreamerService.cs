@@ -4,7 +4,7 @@ using Grpc.Core;
 
 namespace grpc_server.v1
 {
-    public class StreamerService: Streamer.StreamerBase
+    public class StreamerService : Streamer.StreamerBase
     {
         /// <summary>
         /// Writing 10 numbers through a stream with an interval of 1 second
@@ -21,7 +21,7 @@ namespace grpc_server.v1
         {
             var random = new Random(request.Seed);
 
-            for(int i = 0; i< 10; i++)
+            for (int i = 0; i < 10; i++)
             {
                 await responseStream.WriteAsync(new GetDataReply
                 {
